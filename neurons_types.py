@@ -1,5 +1,5 @@
 import numpy as np
-from sctn.spiking_neuron import create_SCTN, IDENTITY, BINARY, SCTN
+from sctn.spiking_neuron import create_SCTN, IDENTITY, BINARY
 
 
 def create_type(
