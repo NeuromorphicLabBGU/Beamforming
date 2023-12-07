@@ -221,6 +221,6 @@ def iteration9(type9, out2: list, out4: list, out5: list, out6: list, out7: list
     inp[29] = sel_11101
     inp[30] = sel_11111
 
-    type9[0].ctn_cycle(inp, out2)
+    return type9[0].ctn_cycle(inp, out2)
 
 

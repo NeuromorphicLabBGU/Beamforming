@@ -15,6 +15,7 @@ def create_type(
     n.leakage_factor = leakage_factor
     n.leakage_period = leakage_period
     n.theta = theta
+    n.membrane_should_reset = False
     return n
 
 def create_type0():

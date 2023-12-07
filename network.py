@@ -20,11 +20,15 @@ type8 = array_of(sctn_t.create_type8, n=1)
 type9 = array_of(sctn_t.create_type9, n=1)
 
 # need to get encoded but whatever..
-pdm1 = np.sin(np.linspace(0, 10 * 2 * np.pi, 1000))
-pdm2 = np.sin(np.linspace(0, 10 * 2 * np.pi, 1000))
+# pdm1 = np.sin(np.linspace(0, 10 * 2 * np.pi, 1000))
+# pdm2 = np.sin(np.linspace(0, 10 * 2 * np.pi, 1000))
+pdm1 = np.ones(160)
+pdm2 = np.zeros(160)
 
 shift_reg_inp1 = np.zeros(9)
+shift_reg_inp1[0::2] = 1
 shift_reg_inp2 = np.zeros(9)
+shift_reg_inp2[0::2] = 1
 pulse_dly_buff1 = np.zeros(16)
 pulse_dly_buff2 = np.zeros(16)
 pulse_dly_buff_pntr = 0
@@ -36,6 +40,7 @@ for i in range(len(pdm1)):
     it.shift_register(shift_reg_inp2, pdm2_byte, o0_2)
     [o1_1, o1_2] = it.iteration1(shift_reg_inp1, shift_reg_inp2, type1)
     [o1a_1, o1a_2] = it.iteration1a(o1_1, o1_2, type1a)
+    print(o1a_1)
     [o2_1] = it.iteration2(o1_1, type2)
 
     if (i + 1) % len(pulse_dly_buff1) != 0:
@@ -49,7 +54,6 @@ for i in range(len(pdm1)):
     out7 = it.iteration7(out3, type7)
     out8 = it.iteration8(out3, type8)
     out9 = it.iteration9(type9, o2_1, out4, out5, out6, out7, out8)
-
+    # print(out9, end=',')
     pulse_dly_buff_pntr = (pulse_dly_buff_pntr+1) % 16
     i += 1
-    break
